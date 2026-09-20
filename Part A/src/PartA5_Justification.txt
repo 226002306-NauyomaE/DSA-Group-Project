@@ -1,13 +1,16 @@
 PART A, TASK A5:
 1. Queue (Assigned Task: Service Centre Waiting Line)
 Behavior: Operates on a First-In, First-Out (FIFO) ordering.
- Justification: Guarantees fairness by serving students in the exact order they arrive. Enqueuing places new arrivals at the end of the line, while dequeuing processes the student who has been waiting the longest without skipping anyone. 
+Justification: Guarantees fairness by serving students in the exact order they arrive. Enqueuing places new arrivals at the end of the line, while dequeuing processes the student who has been waiting the longest without skipping anyone. 
+
 2. Singly Linked List (Assigned Task: Student Service Records)
 Behavior: Dynamic structure of nodes linked sequentially via pointers.
 Justification: Service records fluctuate constantly during the day. A linked list allows efficient insertion and deletion at any position (beginning, middle, or end) without pre-allocating memory or shifting elements like a fixed array would. 
+
 3. Stack (Assigned Task: Postfix Expression Evaluation)
 Behavior: Operates on a Last-In, First-Out (LIFO) ordering.
 Justification: Postfix evaluation delays operations until all required operands are read. Operands are pushed onto the stack, and encountering an operator immediately pops the two most recently saved operands to evaluate them. 
+
 4. Array (Assigned Task: Daily Statistics)
 Behavior: Fixed-size, contiguous memory offering indexed element access. 
 Justification: Once all students are served, the record count is fixed. An array provides simple, memory-efficient storage for running single-pass loop traversals to compute summary statistics (total, average, min/max, threshold counts). 
