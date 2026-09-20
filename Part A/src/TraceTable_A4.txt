@@ -1,0 +1,17 @@
+TASK A4 - TRACE TABLE - array = [15,10,5,20,8,12]
+
+i | array[i] | total | max | min | count>10 | Comments
+0 | 15 | 15 | 15 | 15 | 1 | first element
+1 | 10 | 25 | 15 | 10 | 1 | 10 not >10
+2 | 5 | 30 | 15 | 5 | 1 | new min
+3 | 20 | 50 | 20 | 5 | 2 | new max
+4 | 8 | 58 | 20 | 5 | 2 |
+5 | 12 | 70 | 20 | 5 | 3 |
+
+FINAL RESULTS:
+Total students = 6
+Total time = 70
+Average = 70/6 = 11.66
+Highest = 20
+Lowest = 5
+>10 mins = 3 (15,20,12)
