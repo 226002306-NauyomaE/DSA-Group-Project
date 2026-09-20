@@ -1,0 +1,21 @@
+TASK A2 - TRACE TABLE - Execution of TestList.java
+
+Initial: head = null
+
+Operation | List State (head -> ... -> null) | Comments
+----------|----------------------------------|--------------------------
+insertAtEnd(225100908, Amakali, Finance, 15) | [225100908|Amakali]->null | First node, head points to Amakali
+insertAtBeginning(225100909, John, Registration, 10) | [225100909|John]->[225100908|Amakali]->null | John inserted at beginning, head changes
+insertAtPosition(225100910, Maria, ID Card, 5) at pos 2 | [225100909|John]->[225100910|Maria]->[225100908|Amakali]->null | Maria becomes 3rd node
+displayStudents() | Traverses: John -> Maria -> Amakali | Output 3 records
+searchStudent(225100908) | temp moves John->Maria->Amakali found=true | Found at tail
+deleteStudent(225100909) | [225100910|Maria]->[225100908|Amakali]->null | Head removed, Maria now head
+displayStudents() | Traverses: Maria -> Amakali | 2 records left
+
+LINKED LIST DIAGRAM BEFORE DELETION:
+head -> [225100909|10min|Registration] -> [225100910|5min|ID Card] -> [225100908|15min|Finance] -> null
+
+AFTER DELETION of 225100909:
+head -> [225100910|5min|ID Card] -> [225100908|15min|Finance] -> null
+
+This proves insertion changes next pointers and deletion bypasses node.
