@@ -1,0 +1,58 @@
+PSEUDOCODE - POSTFIX EXPRESSION EVALUATION: STACK
+
+START 
+   char exp[] = ['5','8','*','2','/','9','+','7','-']
+   int size = 9
+   int stack[] = new int[size]
+   int top = -1
+
+FOR(i=0; i<size; i++)
+IF(exp[i] >= '0' AND exp[i] <= '9') THEN
+ push() {
+    IF(top == size-1) THEN 
+      DISPLAY "Stack is full!"
+    ELSE 
+      top++
+      stack[top] = exp[i] - '0' //exp[i] - '0' converts the characters to integers
+     ENDIF
+	 }
+ELSE
+  pop(){
+	int poppedNum1
+	int poppedNum2
+	int result 
+
+        IF(top < 1)THEN
+           DISPLAY "Insufficient operands!"
+        ELSE 
+          poppedNum1 = stack[top]
+          top--
+          poppedNum2 = stack[top]
+          top--
+	  CASE WHEN exp[i]
+	  '*':
+	      result = poppedNum2 * poppedNum1
+	  '/':
+	      result = poppedNum2 / poppedNum1
+	  '+': 
+	      result = poppedNum2 + poppedNum1
+	  '-':
+	      result = poppedNum2 - poppedNum1
+	  END CASE
+	  ENDIF
+         top++
+         stack[top] = result
+	 }
+ENDIF
+ENDFOR
+
+void peek(){
+            IF(top == -1) THEN
+              DISPLAY "Stack is empty!"
+            ELSE
+              DISPLAY "The result of the expression is: " +stack[top]
+            ENDIF
+           }
+END
+
+   
