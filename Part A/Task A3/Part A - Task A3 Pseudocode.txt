@@ -36,7 +36,7 @@ ELSE
 	                 result = poppedNum2 / poppedNum1
 	             '+': 
 	                 result = poppedNum2 + poppedNum1
-	              '-':
+	             '-':
 	                  result = poppedNum2 - poppedNum1
 	        END CASE
 	     ENDIF
