@@ -2,15 +2,55 @@ PART A, TASK A5:
 1. Queue (Assigned Task: Service Centre Waiting Line)
 Behavior: Operates on a First-In, First-Out (FIFO) ordering.
 Justification: Guarantees fairness by serving students in the exact order they arrive. Enqueuing places new arrivals at the end of the line, while dequeuing processes the student who has been waiting the longest without skipping anyone. 
+Operations:  enqueue(student), dequeue(), peek(), isEmpty(), and displayQueue().   
+Visual Display:
+Queue Diagram (FIFO - First In, First Out)
+
+  Enqueue --> |   Rear   |                    |  Front   | --> Dequeue
+  (Arrive)    +----------+    +----------+    +----------+    (Serve)
+              | NDAPEWA | <- |HITJEVI   | <- |  MARIA   |
+              +----------+    +----------+    +----------+
+              (Newest)                         (Next to be served)
 
 2. Singly Linked List (Assigned Task: Student Service Records)
 Behavior: Dynamic structure of nodes linked sequentially via pointers.
 Justification: Service records fluctuate constantly during the day. A linked list allows efficient insertion and deletion at any position (beginning, middle, or end) without pre-allocating memory or shifting elements like a fixed array would. 
-
+Operations: insertStudent(), deleteStudent(), searchStudent() and displayStudents().
+Visual Display:
+Singly Linked List Diagram (Node Structure and Pointers)
+Head
+ |
+ v
++---------------------+     +---------------------+     +---------------------+
+| Student No: 221045678|     | Student No: 222034512|     | Student No: 223041876|
+| Name: Maria          | --> | Name: Tomas          | --> | Name: Ndapewa        |-----> null
+| Service: Registration|     | Service: Student Card|     | Service: Fees        |
+| Next Pointer *       |     | Next Pointer *       |     | Next Pointer *       |
++---------------------+     +---------------------+     +---------------------+
+                                                                
 3. Stack (Assigned Task: Postfix Expression Evaluation)
 Behavior: Operates on a Last-In, First-Out (LIFO) ordering.
 Justification: Postfix evaluation delays operations until all required operands are read. Operands are pushed onto the stack, and encountering an operator immediately pops the two most recently saved operands to evaluate them. 
+Operations:  push(), pop() and peek(), supporting +, -, x and ÷.
+Visual Display:
+Stack Diagram (LIFO - Last In, First Out)
+  TOP -->|   11    | <-- Pop/Peek
+         +---------+
+         |     2   |
+         +---------+
+         |     8   |
+         +---------+
+         |     1   |
+         +---------+
+         |     5   | <--BOTTOM
+         +---------+
 
 4. Array (Assigned Task: Daily Statistics)
 Behavior: Fixed-size, contiguous memory offering indexed element access. 
 Justification: Once all students are served, the record count is fixed. An array provides simple, memory-efficient storage for running single-pass loop traversals to compute summary statistics (total, average, min/max, threshold counts). 
+Operations:calculateTotal(), calculateAverage(), findMax(), findMin(), countAboveThreshold().
+Visual Display:
+
+Array (Service Times)
+Index:  [0]   [1]   [2]   [3]   [4]   [5]
+Value: [12]  [5]   [8]   [20]  [4]   [17] 
