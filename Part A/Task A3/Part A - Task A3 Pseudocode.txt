@@ -13,7 +13,7 @@ IF(exp[i] >= '0' AND exp[i] <= '9') THEN
       DISPLAY "Stack is full!"
     ELSE 
       top++
-      stack[top] = exp[i] - '0' //exp[i] - '0' converts the characters to integers
+      stack[top] = exp[i] - '0'                 // exp[i] - '0', converts the characters to integers
      ENDIF
 	 }
 ELSE
@@ -29,17 +29,17 @@ ELSE
           top--
           poppedNum2 = stack[top]
           top--
-	  CASE WHEN exp[i]
-	  '*':
-	      result = poppedNum2 * poppedNum1
-	  '/':
-	      result = poppedNum2 / poppedNum1
-	  '+': 
-	      result = poppedNum2 + poppedNum1
-	  '-':
-	      result = poppedNum2 - poppedNum1
-	  END CASE
-	  ENDIF
+	         CASE WHEN exp[i]
+	             '*':
+	                 result = poppedNum2 * poppedNum1
+	             '/':
+	                 result = poppedNum2 / poppedNum1
+	             '+': 
+	                 result = poppedNum2 + poppedNum1
+	              '-':
+	                  result = poppedNum2 - poppedNum1
+	        END CASE
+	     ENDIF
          top++
          stack[top] = result
 	 }
@@ -50,7 +50,7 @@ void peek(){
             IF(top == -1) THEN
               DISPLAY "Stack is empty!"
             ELSE
-              DISPLAY "The result of the expression is: " +stack[top]
+              DISPLAY "The result of the expression is: " + stack[top]
             ENDIF
            }
 END
