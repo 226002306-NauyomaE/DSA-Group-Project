@@ -1,0 +1,52 @@
+TASK A2 - STUDENT SERVICE RECORDS - SINGLY LINKED LIST - PSEUDOCODE
+Student: 225100908 - Amakali
+
+NODE STRUCTURE:
+Node {
+  data: Student (studentNo, name, serviceType, estimatedTime)
+  next: pointer to Node
+}
+
+1. insertAtBeginning(newStudent):
+  newNode = create Node(newStudent)
+  newNode.next = head
+  head = newNode
+
+2. insertAtEnd(newStudent):
+  newNode = create Node(newStudent)
+  IF head == null THEN head = newNode RETURN
+  temp = head
+  WHILE temp.next != null DO temp = temp.next
+  temp.next = newNode
+
+3. insertAtPosition(newStudent, pos):
+  IF pos == 0 THEN insertAtBeginning(newStudent) RETURN
+  newNode = create Node(newStudent)
+  temp = head
+  FOR i=0 TO pos-2 AND temp != null DO temp = temp.next
+  IF temp == null THEN error "position out of bounds"
+  newNode.next = temp.next
+  temp.next = newNode
+
+4. deleteStudent(studentNo):
+  IF head == null RETURN
+  IF head.data.studentNo == studentNo THEN head = head.next RETURN
+  prev = head
+  curr = head.next
+  WHILE curr != null AND curr.data.studentNo != studentNo DO
+    prev = curr
+    curr = curr.next
+  IF curr != null THEN prev.next = curr.next
+
+5. searchStudent(studentNo):
+  temp = head
+  WHILE temp != null DO
+    IF temp.data.studentNo == studentNo RETURN true
+    temp = temp.next
+  RETURN false
+
+6. displayStudents():
+  temp = head
+  WHILE temp != null DO
+    PRINT temp.data
+    temp = temp.next
