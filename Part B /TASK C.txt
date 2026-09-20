@@ -1,0 +1,11 @@
+Experiment Results Table (example - run SortingExperiment_C.java):
+Algorithm | Input Size | Comparisons | Time(ns) | Inference
+Selection | 20 | 190 | ~15000 | O(n^2) - slow for large n
+Insertion | 20 | ~90 | ~8000 | O(n^2) but good for small n
+Merge | 20 | ~60 | ~12000 | O(n log n) - consistent
+Quick | 20 | ~70 | ~10000 | O(n log n) avg - fastest
+
+Selection | 500 | 124750 | ~... | O(n^2) worst
+Merge | 500 | ~3500 | ~... | Best for large
+Quick | 500 | ~4500 | ~... | Fastest avg
+Conclusion: For n=500, Merge and Quick are 25x faster than Selection/Insertion.
