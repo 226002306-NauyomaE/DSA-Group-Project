@@ -1,0 +1,53 @@
+public class DailyStatistics {
+
+    public static void main(String[] args) {
+
+        // Array containing the service times of students
+        int[] serviceTimes = {12, 5, 8, 4};
+
+        // Variables for the required statistics
+        int totalStudents = 0;
+        int totalServiceTime = 0;
+        int highestServiceTime = serviceTimes[0];
+        int lowestServiceTime = serviceTimes[0];
+        int servicesLongerThan10 = 0;
+
+        // Traverse the array
+        for (int i = 0; i < serviceTimes.length; i++) {
+            int serviceTime = serviceTimes[i];
+
+            // Count students served
+            totalStudents = totalStudents + 1;
+
+            // Calculate total service time
+            totalServiceTime = totalServiceTime + serviceTime;
+
+            // find highest service time
+            if (serviceTime > highestServiceTime) {
+                highestServiceTime = serviceTime;
+            }
+
+            // find lowest service time
+            if (serviceTime < lowestServiceTime) {
+                lowestServiceTime = serviceTime;
+            }
+
+            // Count services longer than 10 minutes
+            if (serviceTime > 10) {
+                servicesLongerThan10 = servicesLongerThan10 + 1;
+            }
+        }
+        
+        // Calculate average service time
+        double averageServiceTime = (double) totalServiceTime / totalStudents;
+
+        // Display the statistics
+        System.out.println("========== DAILY SERVICE CENTRE STATISTICS ==========");
+        System.out.println("Total number of students served: " + totalStudents);
+        System.out.println("Total service time: " + totalServiceTime + " minutes");
+        System.out.println("Average service time: " + averageServiceTime + " minutes");
+        System.out.println("Highest service time: " + highestServiceTime + " minutes");
+        System.out.println("Lowest service time: " + lowestServiceTime + " minutes");
+        System.out.println("Number of services longer than 10 minutes: " + servicesLongerThan10);
+    }
+}
