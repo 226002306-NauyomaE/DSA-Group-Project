@@ -1,0 +1,30 @@
+START
+   serviceTimes = [12, 5, 8, 4]
+
+   totalStudents = 0
+   totalServiceTime = 0
+   highestServiceTime = serviceTimes[0]
+   lowestServiceTime = serviceTimes[0]
+   servicesLongerThan10 = 0
+
+   FOR each serviceTime in serviceTimes DO
+       totalStudents = totalStudents + 1
+       totalServiceTime = totalServiceTime + serviceTime
+       IF serviceTime > highestServiceTime THEN
+          highestServiceTime = serviceTime
+       END IF
+       IF serviceTime < lowestServiceTime THEN
+          lowestServiceTime = serviceTime
+       END IF
+       IF serviceTime > 10 THEN
+          serviceLongerThan10 = servicesLongerThan10 + 1
+       END IF
+    END FOR
+    avarageServiceTime = totalServiceTime / totalStudents
+    DISPLAY "Total students served: ", totalStudents
+    DISPLAY "Total service time: ", totalServiceTime
+    DISPLAY "Average service time: ", avarageServiceTime
+    DISPLAY "Highest service time: ", highestServiceTime
+    DISPLAY "lowest service time: ", lowestServiceTime
+    DISPLAY "services longer than 10 minutes: ", servicesLongerThan10
+END
