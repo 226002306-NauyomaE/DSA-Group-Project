@@ -3,7 +3,7 @@ PART A, TASK A5:
 Behavior: Operates on a First-In, First-Out (FIFO) ordering.
 Justification: Guarantees fairness by serving students in the exact order they arrive. Enqueuing places new arrivals at the end of the line, while dequeuing processes the student who has been waiting the longest without skipping anyone. 
 Operations:  enqueue(student), dequeue(), peek(), isEmpty(), and displayQueue().   
-Visual Display:
+Visual Display: 
 Queue Diagram (FIFO - First In, First Out)
 
   Enqueue --> |   Rear   |                    |  Front   | --> Dequeue
