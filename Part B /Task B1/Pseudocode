@@ -1,0 +1,17 @@
+START
+ selectionSort(array)
+    n = LENGTH of array
+    
+    FOR i FROM 0 TO n - 2 DO
+           minIndex = i
+
+        FOR j FROM i + 1 TO n - 1 DO
+            IF array[j] < array[minIndex] THEN
+                   minIndex = j
+            END IF
+        END FOR
+        IF minIndex != i THEN
+            SWAP array[i] WITH array[minIndex]
+        END IF
+    END FOR
+END 
