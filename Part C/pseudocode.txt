@@ -1,0 +1,132 @@
+START
+int inputSizes[] = [20, 50, 100, 500]
+long startTime
+long endTime
+long selectionTime
+int selectionComp
+long insertionTime
+int insertionComp
+  
+FOR(i=0, i<LENGTH(inputSizes), i++)
+    size = inputSizes[i]
+    int originalArray[] = new int[size]
+
+     FOR(j=0, j<size, j++)
+	originalArray[j] = random(1,1000)
+     ENDFOR
+
+    int selectionArray[] = copy(originalArray[])
+    int insertionArray[] = copy(originalArray[])
+    int mergeArray[] = copy(originalArray[])
+    int quickArray[] = copy(originalArray[])
+
+    startTime = currentTime()
+    selectionComp = SELECTIONSORT(selectionArray)
+    endTime = currentTime()
+    selectionTime = endTime - startTime
+
+    startTime = currentTime()
+    insertionComp = INSERTIONSORT(insertionArray)
+    endTime = currentTime()
+    insertionTime = endTime - startTime
+
+ENDFOR
+
+SELECTIONSORT(selectionArray)
+
+    int selectionComp = 0
+    int minIndex
+    int temp
+
+    FOR(i=0, i<LENGTH(selectionArray)-1, i++)
+     minIndex = i
+      
+      FOR(j=i+1; j<LENGTH(selectionArray), j++)
+       selectionComp = selectionComp + 1
+        IF(selectionArray[j] <selectionArray[minIndex]) THEN
+          minIndex = j
+      ENDIF
+      ENDFOR
+       
+    temp = selectionArray[i]
+    selectionArray[i] = selectionArray[minIndex]
+    selectionArray[minIndex] = temp
+    ENDFOR
+
+    RETURN selectionComp
+ENDSELECTIONSORT
+
+INSERTIONSORT(insertionArray)
+
+int insertionComp = 0
+int temp1
+int j
+
+FOR(i=1; 1<LENGTH(insertionArray), i++)
+ temp1 = insertionArray[i]
+ j = i-1
+ 
+ WHILE(j>=0)
+    insertionComp = insertionComp + 1
+
+    IF(insertionArray[j] >temp1) THEN
+      insertionArray[j + 1] = insertionArray[j]
+      j = j - 1
+    ELSE
+     BREAK
+    ENDIF
+ ENDWHILE
+ 
+ insertionArray[j + 1] = temp1
+ENDFOR
+
+RETURN insertionComp
+ENDINSERTIONSORT
+      
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
