@@ -1,1 +1,12 @@
-
+START 
+int array [] = {17,5,23,8,14,3,11,20,6,9}
+FOR(i = 1; i<10; i++)
+      temp= array[i]
+      j=i-1
+WHILE(j >= 0 AND array[j] > temp)
+      array[j+1] = array[i]
+      j= j-1
+   ENDWHILE
+    array [j+1] = temp
+ ENDFOR
+END
