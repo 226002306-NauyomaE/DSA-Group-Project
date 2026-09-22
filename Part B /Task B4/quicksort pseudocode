@@ -1,4 +1,4 @@
-quickSort(int[] array, int start, int end) {
+quickSort(int[] serviceTimes, int start, int end) {
     IF (start >= end) 
         int pivot = start;
     int i = start;
