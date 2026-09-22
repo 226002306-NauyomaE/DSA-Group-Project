@@ -1,26 +1,26 @@
 START
-   serviceTimes = [12, 5, 8, 4]
+   int[] serviceTimes = [12, 5, 8, 4]
 
-   totalStudents = 0
-   totalServiceTime = 0
-   highestServiceTime = serviceTimes[0]
-   lowestServiceTime = serviceTimes[0]
-   servicesLongerThan10 = 0
+   int totalStudents = 0
+   int totalServiceTime = 0
+   int highestServiceTime = serviceTimes[0]
+   int lowestServiceTime = serviceTimes[0]
+   int servicesLongerThan10 = 0
 
-   FOR each serviceTime in serviceTimes DO
+   for (int = 0; i < serviceTimes.length; i++) {
+       int serviceTime = serviceTimes[i]
        totalStudents = totalStudents + 1
        totalServiceTime = totalServiceTime + serviceTime
-       IF serviceTime > highestServiceTime THEN
-          highestServiceTime = serviceTime
-       END IF
-       IF serviceTime < lowestServiceTime THEN
-          lowestServiceTime = serviceTime
-       END IF
-       IF serviceTime > 10 THEN
-          serviceLongerThan10 = servicesLongerThan10 + 1
-       END IF
-    END FOR
-    avarageServiceTime = totalServiceTime / totalStudents
+       if (serviceTime > highestServiceTime) {
+          highestServiceTime = serviceTime}
+
+       if (serviceTime < lowestServiceTime) {
+          lowestServiceTime = serviceTime}
+       
+       if (serviceTime > 10) {
+          serviceLongerThan10 = servicesLongerThan10 + 1}  
+    }
+    double avarageServiceTime = (double) totalServiceTime / totalStudents
     DISPLAY "Total students served: ", totalStudents
     DISPLAY "Total service time: ", totalServiceTime
     DISPLAY "Average service time: ", avarageServiceTime
