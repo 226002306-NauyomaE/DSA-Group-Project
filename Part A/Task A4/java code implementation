@@ -1,8 +1,7 @@
-public class DailyStatistics {
-
+class Main {
     public static void main(String[] args) {
-
-        // Array containing the service times of students
+        
+         // Array containing the service times of students
         int[] serviceTimes = {12, 5, 8, 4};
 
         // Variables for the required statistics
