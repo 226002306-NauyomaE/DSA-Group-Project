@@ -1,22 +1,22 @@
 quickSort(int[] array, int start, int end) {
-    if (start >= end) {
+    IF (start >= end) 
         int pivot = start;
     int i = start;
     int j = end;
 
-    while (i < j){
-        while (i < end && array[i] <= array[pivot]) {
+    WHILE (i < j)
+        WHILE (i < end && array[i] <= array[pivot])
             i = i + 1;
-        }
-        while (array[j] > array[pivot]) {
+        ENDWHILE
+        WHILE (array[j] > array[pivot]) 
             j = j - 1;
-        }
-        if (i < j) {
+        ENDWHILE
+        IF (i < j) 
             int temp = array[i];
             array[i] = array[j];
             array[j] = temp;
-        }
-    }
+        ENDIF
+    ENDWHILE
     int temp = array[pivot];
     array[pivot] = array[j];
     array[j] = temp;
@@ -24,5 +24,5 @@ quickSort(int[] array, int start, int end) {
     quickSort(array, start, j - 1);
     quickSort(array, j + 1, end);
  
-  }
+  ENDIF
 }
