@@ -1,0 +1,28 @@
+quickSort(int[] array, int start, int end) {
+    IF (start >= end) 
+        int pivot = start;
+    int i = start;
+    int j = end;
+
+    WHILE (i < j)
+        WHILE (i < end && array[i] <= array[pivot])
+            i = i + 1;
+        ENDWHILE
+        WHILE (array[j] > array[pivot]) 
+            j = j - 1;
+        ENDWHILE
+        IF (i < j) 
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        ENDIF
+    ENDWHILE
+    int temp = array[pivot];
+    array[pivot] = array[j];
+    array[j] = temp;
+
+    quickSort(array, start, j - 1);
+    quickSort(array, j + 1, end);
+ 
+  ENDIF
+}
