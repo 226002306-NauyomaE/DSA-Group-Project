@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-
+ 
     // --- 1. STUDENT DATA ---
     static class Student {
         String no, name, type;
