@@ -1,0 +1,186 @@
+START
+int inputSizes[] = [20, 50, 100, 500]
+long startTime
+long endTime
+long selectionTime
+int selectionComp
+long insertionTime
+int insertionComp
+int mergeComp
+long mergeTime
+int quickComp
+long quickTime
+  
+FOR(i=0, i<LENGTH(inputSizes), i++)
+    size = inputSizes[i]
+    int originalArray[] = new int[size]
+
+     FOR(j=0, j<size, j++)
+	originalArray[j] = random(1,1000)
+     ENDFOR
+
+    int selectionArray[] = copy(originalArray[])
+    int insertionArray[] = copy(originalArray[])
+    int mergeArray[] = copy(originalArray[])
+    int quickArray[] = copy(originalArray[])
+
+    startTime = currentTime()
+    selectionComp = SELECTIONSORT(selectionArray)
+    endTime = currentTime()
+    selectionTime = endTime - startTime
+
+    startTime = currentTime()
+    insertionComp = INSERTIONSORT(insertionArray)
+    endTime = currentTime()
+    insertionTime = endTime - startTime
+
+    mergeComp = 0
+    startTime = currentTime()
+    mergeComp = MERGESORT(mergeArray[], 0, size-1)
+    endTime = currentTime()
+    mergeTime = endTime - startTime
+
+    quickComp = 0
+    startTime = currentTime()
+    QUICKSORT(quickArray[], 0, size-1)
+    endTime = currentTime()
+    quickTime = endTime - startTime
+    
+
+ENDFOR
+
+SELECTIONSORT(selectionArray)
+
+    int selectionComp = 0
+    int minIndex
+    int temp
+
+    FOR(i=0, i<LENGTH(selectionArray)-1, i++)
+     minIndex = i
+      
+      FOR(j=i+1; j<LENGTH(selectionArray), j++)
+       selectionComp = selectionComp + 1
+        IF(selectionArray[j] <selectionArray[minIndex]) THEN
+          minIndex = j
+      ENDIF
+      ENDFOR
+       
+    temp = selectionArray[i]
+    selectionArray[i] = selectionArray[minIndex]
+    selectionArray[minIndex] = temp
+    ENDFOR
+
+    RETURN selectionComp
+ENDSELECTIONSORT
+
+INSERTIONSORT(insertionArray)
+
+int insertionComp = 0
+int temp1
+int j
+
+FOR(i=1; i<LENGTH(insertionArray), i++)
+ temp1 = insertionArray[i]
+ j = i-1
+ 
+ WHILE(j>=0)
+    insertionComp = insertionComp + 1
+
+    IF(insertionArray[j] >temp1) THEN
+      insertionArray[j + 1] = insertionArray[j]
+      j = j - 1
+    ELSE
+     BREAK
+    ENDIF
+ ENDWHILE
+ 
+ insertionArray[j + 1] = temp1
+ENDFOR
+
+RETURN insertionComp
+ENDINSERTIONSORT
+      
+mergeComp = 0
+MERGESORT(mergeArray[], left, right)
+   IF(left < right) THEN
+    int mid = (left + right)/2
+    MERGESORT(mergeArray[], left, mid)
+    MERGESORT(mergeArray[], mid + 1, right)
+    MERGE(mergeArray[], left, mid, right)
+
+   ENDIF
+RETURN mergeComp
+ENDMERGESORT
+
+MERGE(mergeArray[], left, mid, right)
+  int i = left
+  int j = mid + 1
+  int k = 0
+  int tempArray[] = new int[right - left + 1]
+
+    WHILE(i <= mid AND j<= right)
+     mergeComp = mergeComp + 1
+      IF(mergeArray[i] <= mergeArray[j]) THEN
+        tempArray[k] = mergeArray[i]
+        i = i + 1
+      ELSE
+        tempArray[k] = mergeArray[j]
+        j = j + 1
+     ENDIF
+        k = k + 1
+    ENDWHILE
+    
+    WHILE(i <= mid)
+      tempArray[k] = mergeArray[i]
+      i = i + 1
+      k = k + 1
+    ENDWHILE
+
+    WHILE(j <= right)
+      tempArray[k] = mergeArray[j]
+      j = j + 1
+      k = k + 1
+    ENDWHILE
+  
+  FOR (i=left, i<=right, i++)
+    mergeArray[i] = tempArray[i-left]
+  ENDFOR
+ ENDMERGE
+
+QUICKSORT(quickArray[], left, right)
+ IF(left < right) THEN
+   int pivotIndex = PARTITION(quickArray[], left, right)
+
+   QUICKSORT(quickArray[], left, pivotIndex-1)
+   QUICKSORT(quickArray[], pivotIndex + 1, right)
+ ENDIF
+ENDQUICKSORT
+
+PARTITION(quickArray[], left, right)
+int pivot = quickArray[right]
+int i = left - 1
+int j = left
+int temp
+ 
+ WHILE(j < right)
+  quickComp = quickComp + 1
+   IF(quickArray[j] <= pivot) THEN
+    i = i + 1
+    temp = quickArray[i]
+    quickArray[i] = quickArray[j]
+    quickArray[j] = temp
+   ENDIF
+ j = j + 1
+ ENDWHILE
+ 
+ temp = quickArray[i + 1]
+ quickArray[i + 1] = quickArray[right]
+ quickArray[right] = temp
+
+RETURN i + 1
+
+ENDPARTITION
+
+
+  
+
