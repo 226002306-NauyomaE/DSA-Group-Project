@@ -142,7 +142,7 @@ MERGE(mergeArray[], left, mid, right)
       k = k + 1
     ENDWHILE
   
-  FOR (i=left, i<=right, i++)
+  FOR(i=left, i<=right, i++)
     mergeArray[i] = tempArray[i-left]
   ENDFOR
  ENDMERGE
