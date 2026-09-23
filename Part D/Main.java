@@ -24,6 +24,9 @@ public class Main {
 
     static int[] times = new int[500]; // Array for statistics
     static int servedCount = 0;
+    
+    // Global counter for sorting comparisons
+    static int comparisons = 0; 
 
     static Scanner sc = new Scanner(System.in);
 
@@ -175,62 +178,100 @@ public class Main {
         System.out.println();
     }
 
-    // --- OPTION 10: Run Experiment ---
+    // --- OPTION 10: Run Experiment---
     static void runExperiment() {
         int[] sizes = {20, 50, 100, 500};
-        System.out.printf("%-15s %-10s %-15s\n", "Algorithm", "Size", "Time (ns)");
+        System.out.printf("%-15s %-10s %-15s %-15s\n", "Algorithm", "Size", "Comparisons", "Time (ns)");
         for (int size : sizes) {
             int[] arr = new int[size];
             for (int i=0; i<size; i++) arr[i] = (int)(Math.random()*1000);
 
             int[] a1=copy(arr), a2=copy(arr), a3=copy(arr), a4=copy(arr);
 
-            long t1=System.nanoTime(); selectionSort(a1); t1=System.nanoTime()-t1;
-            long t2=System.nanoTime(); insertionSort(a2); t2=System.nanoTime()-t2;
-            long t3=System.nanoTime(); mergeSort(a3,0,a3.length-1); t3=System.nanoTime()-t3;
-            long t4=System.nanoTime(); quickSort(a4,0,a4.length-1); t4=System.nanoTime()-t4;
+            // Selection Sort
+            long t1=System.nanoTime(); 
+            selectionSort(a1); 
+            t1=System.nanoTime()-t1;
+            int c1 = comparisons; // Capture count
 
-            System.out.printf("%-15s %-10d %-15d\n", "Selection Sort", size, t1);
-            System.out.printf("%-15s %-10d %-15d\n", "Insertion Sort", size, t2);
-            System.out.printf("%-15s %-10d %-15d\n", "Merge Sort", size, t3);
-            System.out.printf("%-15s %-10d %-15d\n", "Quick Sort", size, t4);
+            // Insertion Sort
+            long t2=System.nanoTime(); 
+            insertionSort(a2); 
+            t2=System.nanoTime()-t2;
+            int c2 = comparisons; // Capture count
+
+            // Merge Sort
+            comparisons = 0; // Reset before Merge Sort
+            long t3=System.nanoTime(); 
+            mergeSort(a3,0,a3.length-1); 
+            t3=System.nanoTime()-t3;
+            int c3 = comparisons; // Capture count
+
+            // Quick Sort
+            comparisons = 0; // Reset before Quick Sort
+            long t4=System.nanoTime(); 
+            quickSort(a4,0,a4.length-1); 
+            t4=System.nanoTime()-t4;
+            int c4 = comparisons; // Capture count
+
+            System.out.printf("%-15s %-10d %-15d %-15d\n", "Selection Sort", size, c1, t1);
+            System.out.printf("%-15s %-10d %-15d %-15d\n", "Insertion Sort", size, c2, t2);
+            System.out.printf("%-15s %-10d %-15d %-15d\n", "Merge Sort", size, c3, t3);
+            System.out.printf("%-15s %-10d %-15d %-15d\n", "Quick Sort", size, c4, t4);
         }
     }
 
-    // --- SORTING HELPER METHODS (Shortest versions) ---
+    // --- SORTING HELPER METHODS ---
     static void selectionSort(int[] a) {
+        comparisons = 0;
         for (int i=0; i<a.length-1; i++) {
             int min=i;
-            for (int j=i+1; j<a.length; j++) if (a[j]<a[min]) min=j;
+            for (int j=i+1; j<a.length; j++) {
+                comparisons++;
+                if (a[j]<a[min]) min=j;
+            }
             int t=a[i]; a[i]=a[min]; a[min]=t;
         }
     }
+    
     static void insertionSort(int[] a) {
+        comparisons = 0;
         for (int i=1; i<a.length; i++) {
             int key=a[i], j=i-1;
-            while (j>=0 && a[j]>key) { a[j+1]=a[j]; j--; }
+            while (j>=0) {
+                comparisons++;
+                if (a[j]>key) { a[j+1]=a[j]; j--; }
+                else break;
+            }
             a[j+1]=key;
         }
     }
+    
     static void mergeSort(int[] a, int l, int r) {
         if (l>=r) return;
         int m=(l+r)/2;
         mergeSort(a,l,m); mergeSort(a,m+1,r);
         int[] temp=new int[r-l+1]; int i=l, j=m+1, k=0;
-        while (i<=m && j<=r) temp[k++] = (a[i]<=a[j]) ? a[i++] : a[j++];
+        while (i<=m && j<=r) {
+            comparisons++;
+            temp[k++] = (a[i]<=a[j]) ? a[i++] : a[j++];
+        }
         while (i<=m) temp[k++]=a[i++];
         while (j<=r) temp[k++]=a[j++];
         for (int x=0; x<temp.length; x++) a[l+x]=temp[x];
     }
+    
     static void quickSort(int[] a, int low, int high) {
         if (low>=high) return;
         int pivot=a[high], i=low-1;
         for (int j=low; j<high; j++) {
+            comparisons++;
             if (a[j]<=pivot) { i++; int t=a[i]; a[i]=a[j]; a[j]=t; }
         }
         int t=a[i+1]; a[i+1]=a[high]; a[high]=t;
         quickSort(a,low,i); quickSort(a,i+2,high);
     }
+    
     static int[] copy(int[] src) {
         int[] c = new int[src.length];
         for (int i=0; i<src.length; i++) c[i]=src[i];
