@@ -1,0 +1,236 @@
+PART D: INTEGRATED SERVICE-CENTRE SYSTEM PSEUDOCODE
+
+
+MAIN PROGRAM (The Menu Loop)
+
+START 
+    Initialize Queue, LinkedList, and serviceTimes Array
+    SET servedCount = 0
+
+    WHILE true DO
+        DISPLAY "===== CAMPUS SERVICE CENTRE ====="
+        DISPLAY "1. Add student to waiting queue"
+        DISPLAY "2. Serve next student"
+        DISPLAY "3. Display waiting students"
+        DISPLAY "4. Add student service record"
+        DISPLAY "5. Display student service records"
+        DISPLAY "6. Search for student record"
+        DISPLAY "7. Remove student record"
+        DISPLAY "8. Display daily statistics"
+        DISPLAY "9. Sort service times"
+        DISPLAY "10. Run sorting experiment"
+        DISPLAY "11. Exit"
+        DISPLAY "Select option: "
+        
+        READ choice
+        
+        IF choice == 1 THEN CALL addToQueue()
+        ELSE IF choice == 2 THEN CALL serveStudent()
+        ELSE IF choice == 3 THEN CALL showQueue()
+        ELSE IF choice == 4 THEN CALL addRecord()
+        ELSE IF choice == 5 THEN CALL showRecords()
+        ELSE IF choice == 6 THEN CALL searchRecord()
+        ELSE IF choice == 7 THEN CALL deleteRecord()
+        ELSE IF choice == 8 THEN CALL showStatistics()
+        ELSE IF choice == 9 THEN CALL sortTimes()
+        ELSE IF choice == 10 THEN CALL runExperiment()
+        ELSE IF choice == 11 THEN DISPLAY "Goodbye!" AND BREAK
+        ELSE DISPLAY "Invalid option."
+        END IF
+    END WHILE
+END 
+
+
+OPTION 1: Add Student to Queue
+START
+ addToQueue()
+    READ studentNo, name, serviceType, time
+    SET newStudent = CREATE Student(studentNo, name, serviceType, time)
+    
+    SET queue[rear] = newStudent
+    SET rear = rear + 1
+    SET queueSize = queueSize + 1
+    DISPLAY "Added to queue."
+END 
+
+
+OPTION 2: Serve Next Student
+START
+ serveStudent()
+    IF queueSize == 0 THEN 
+        DISPLAY "Queue empty."
+        RETURN
+    END IF
+    
+    SET student = queue[front]
+    SET front = front + 1
+    SET queueSize = queueSize - 1
+    
+    SET times[servedCount] = student.time
+    SET servedCount = servedCount + 1
+    
+    DISPLAY "Served: " + student.name
+END 
+
+
+OPTION 3: Display Waiting Students
+START
+ showQueue()
+    IF queueSize == 0 THEN 
+        DISPLAY "Queue empty."
+        RETURN
+    END IF
+    
+    FOR i FROM front TO rear - 1 DO
+        DISPLAY queue[i]
+    END FOR
+END 
+
+=========================================
+OPTION 4: Add Service Record (Linked List)
+=========================================
+PROCEDURE addRecord()
+    READ studentNo, name, serviceType, time
+    SET newStudent = CREATE Student(studentNo, name, serviceType, time)
+    SET newNode = CREATE Node(newStudent)
+    
+    IF head == null THEN
+        SET head = newNode
+    ELSE
+        SET current = head
+        WHILE current.next != null DO
+            SET current = current.next
+        END WHILE
+        SET current.next = newNode
+    END IF
+    DISPLAY "Record added."
+END PROCEDURE
+
+
+OPTION 5: Display Service Records
+START
+ showRecords()
+    IF head == null THEN 
+        DISPLAY "No records."
+        RETURN
+    END IF
+    
+    SET current = head
+    WHILE current != null DO
+        DISPLAY current.data
+        SET current = current.next
+    END WHILE
+END
+
+OPTION 6: Search for Student Record
+START
+ searchRecord()
+    READ studentNo
+    SET current = head
+    
+    WHILE current != null DO
+        IF current.data.studentNo == studentNo THEN
+            DISPLAY "Found: " + current.data
+            RETURN
+        END IF
+        SET current = current.next
+    END WHILE
+    
+    DISPLAY "Not found."
+END 
+
+OPTION 7: Remove Student Record
+START
+ deleteRecord()
+    READ studentNo
+    
+    IF head == null THEN 
+        DISPLAY "Not found."
+        RETURN
+    END IF
+    
+    IF head.data.studentNo == studentNo THEN
+        SET head = head.next
+        DISPLAY "Removed."
+        RETURN
+    END IF
+    
+    SET current = head
+    WHILE current.next != null DO
+        IF current.next.data.studentNo == studentNo THEN
+            SET current.next = current.next.next
+            DISPLAY "Removed."
+            RETURN
+        END IF
+        SET current = current.next
+    END WHILE
+    
+    DISPLAY "Not found."
+END 
+
+OPTION 8: Display Daily Statistics (Array)
+START
+showStatistics()
+    IF servedCount == 0 THEN 
+        DISPLAY "No students served."
+        RETURN
+    END IF
+    
+    SET total = 0, max = times[0], min = times[0], over10 = 0
+    
+    FOR i FROM 0 TO servedCount - 1 DO
+        SET total = total + times[i]
+        IF times[i] > max THEN SET max = times[i]
+        IF times[i] < min THEN SET min = times[i]
+        IF times[i] > 10 THEN SET over10 = over10 + 1
+    END FOR
+    
+    DISPLAY "Total served: " + servedCount
+    DISPLAY "Total time: " + total
+    DISPLAY "Average: " + (total / servedCount)
+    DISPLAY "Max time: " + max
+    DISPLAY "Min time: " + min
+    DISPLAY "Over 10 mins: " + over10
+END 
+
+OPTION 9: Sort Service Times
+START
+PROCEDURE sortTimes()
+    IF servedCount == 0 THEN 
+        DISPLAY "Nothing to sort."
+        RETURN
+    END IF
+    
+    CREATE copy array of size servedCount
+    COPY values from times to copy
+    
+    DISPLAY "1.Selection 2.Insertion 3.Merge 4.Quick"
+    READ algorithmChoice
+    
+    IF algorithmChoice == 1 THEN CALL selectionSort(copy)
+    ELSE IF algorithmChoice == 2 THEN CALL insertionSort(copy)
+    ELSE IF algorithmChoice == 3 THEN CALL mergeSort(copy, 0, length-1)
+    ELSE IF algorithmChoice == 4 THEN CALL quickSort(copy, 0, length-1)
+    
+    DISPLAY "Sorted: " + copy
+END 
+
+
+OPTION 10: Run Sorting Experiment:
+START
+ runExperiment()
+    SET sizes = [20, 50, 100, 500]
+    DISPLAY table headers
+    
+    FOR each size in sizes DO
+        CREATE original array of random numbers
+        CREATE copies (a1, a2, a3, a4) of original
+        
+        START timer, CALL selectionSort(a1), STOP timer -> t1
+        START timer, CALL insertionSort(a2), STOP timer -> t2
+        START timer, CALL mergeSort(a3), STOP timer -> t3
+        START timer, CALL quickSort(a4), STOP timer -> t4
+        
+        DISPLAY results for this size
+    END FOR
+END 
