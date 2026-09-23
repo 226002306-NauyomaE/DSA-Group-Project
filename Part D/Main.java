@@ -9,7 +9,7 @@ public class Main {
         Student(String n, String na, String t, int tm) { no=n; name=na; type=t; time=tm; }
         void show() { System.out.println("  " + no + " | " + name + " | " + type + " | " + time + " mins"); }
     }
-
+ 
     // --- 2. LINKED LIST NODE (For Service Records) ---
     static class Node {
         Student data; Node next;
