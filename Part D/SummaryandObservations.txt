@@ -1,0 +1,12 @@
+Part D: Integrated Service-Centre System Summary
+Program Overview:
+The Integrated Service-Centre System is a single, menu-driven Java application that combines all the data structures and algorithms developed in Parts A, B, and C. The system provides 11 interactive options, allowing a user to simulate the daily operations of a campus service centre. 
+
+Data Structure Integration:
+1. Queue (Options 1, 2, 3): A custom array-based queue manages the waiting line. Students are added to the rear (enqueue), served from the front (dequeue), and displayed in their order of arrival. This ensures a fair "first-come, first-served" policy.
+2. Singly Linked List (Options 4, 5, 6, 7): A custom linked list dynamically stores permanent student service records. Users can insert new records, traverse and display all records, search by student number, and delete records by re-linking nodes.
+3. Array (Option 8): A standard integer array stores the service times of students as they are served. A manual algorithmic traversal processes this array to calculate daily statistics (total, average, max, min, and count of services over 10 minutes) without using built-in shortcut functions.
+4. Sorting Algorithms (Options 9, 10): The system integrates the four custom sorting algorithms (Selection, Insertion, Merge, Quick) to sort the recorded service times. Option 10 runs the full algorithm experiment (sizes 20, 50, 100, 500) to compare comparisons and execution times.
+
+Observations:
+The integrated system successfully demonstrates how multiple data structures can interact within a single program. A key observation is the seamless data flow: when a student is served (dequeued), their service time is automatically piped into the array for future statistical analysis. The menu loop operates reliably, correctly routing the user's input to the appropriate underlying data structure or algorithm. The program strictly adheres to the project constraints, successfully implementing all structures and sorts manually without relying on Java's built-in collection classes or sorting functions.
