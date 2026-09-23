@@ -278,3 +278,25 @@ public class Main {
         return c;
     }
 }
+
+        // --- ALMOST SORTED TEST ---
+        System.out.println("\n=== ALMOST-SORTED ARRAY TEST (Size 100) ===");
+        int[] almostSorted = new int[100];
+        for (int i = 0; i < 100; i++) almostSorted[i] = i; // Sorted array
+        for (int k = 0; k < 5; k++) { // Shuffle 5 elements
+            int idx1 = (int)(Math.random()*100);
+            int idx2 = (int)(Math.random()*100);
+            int temp = almostSorted[idx1]; almostSorted[idx1] = almostSorted[idx2]; almostSorted[idx2] = temp;
+        }
+
+        int[] b1=copy(almostSorted), b2=copy(almostSorted), b3=copy(almostSorted), b4=copy(almostSorted);
+
+        long s1=System.nanoTime(); selectionSort(b1); s1=System.nanoTime()-s1; int ac1 = comparisons;
+        long s2=System.nanoTime(); insertionSort(b2); s2=System.nanoTime()-s2; int ac2 = comparisons;
+        comparisons = 0; long s3=System.nanoTime(); mergeSort(b3,0,b3.length-1); s3=System.nanoTime()-s3; int ac3 = comparisons;
+        comparisons = 0; long s4=System.nanoTime(); quickSort(b4,0,b4.length-1); s4=System.nanoTime()-s4; int ac4 = comparisons;
+
+        System.out.printf("%-15s %-10d %-15d %-15d\n", "Selection Sort", 100, ac1, s1);
+        System.out.printf("%-15s %-10d %-15d %-15d\n", "Insertion Sort", 100, ac2, s2);
+        System.out.printf("%-15s %-10d %-15d %-15d\n", "Merge Sort", 100, ac3, s3);
+        System.out.printf("%-15s %-10d %-15d %-15d\n", "Quick Sort", 100, ac4, s4);
