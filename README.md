@@ -23,4 +23,6 @@ No local Java installation is required to run the codes.
 ## Github repository link
 https://github.com/226002306-NauyomaE/DSA-Group-Project
 
+## "Submitted by 226002306-Elizabeth K Nauyoma"
+
 
